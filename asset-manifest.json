@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Enhanced-Jobby-App/static/css/main.03cb012b.chunk.css",
-    "main.js": "/Enhanced-Jobby-App/static/js/main.253de380.chunk.js",
-    "main.js.map": "/Enhanced-Jobby-App/static/js/main.253de380.chunk.js.map",
+    "main.js": "/Enhanced-Jobby-App/static/js/main.b70fb531.chunk.js",
+    "main.js.map": "/Enhanced-Jobby-App/static/js/main.b70fb531.chunk.js.map",
     "runtime-main.js": "/Enhanced-Jobby-App/static/js/runtime-main.12b6b17b.js",
     "runtime-main.js.map": "/Enhanced-Jobby-App/static/js/runtime-main.12b6b17b.js.map",
     "static/js/2.be56d034.chunk.js": "/Enhanced-Jobby-App/static/js/2.be56d034.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.12b6b17b.js",
     "static/js/2.be56d034.chunk.js",
     "static/css/main.03cb012b.chunk.css",
-    "static/js/main.253de380.chunk.js"
+    "static/js/main.b70fb531.chunk.js"
   ]
 }
