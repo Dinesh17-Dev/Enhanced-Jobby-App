@@ -53,26 +53,26 @@ class ProfileDetails extends Component {
     const {name, profileImageUrl, shortBio} = profileList
 
     return (
-      <div className='profile-container'>
-        <img src={profileImageUrl} alt='profile' className='profile-logo' />
-        <h1 className='name-heading'>{name}</h1>
-        <p className='bio'>{shortBio}</p>
+      <div className="profile-container">
+        <img src={profileImageUrl} alt="profile" className="profile-logo" />
+        <h1 className="name-heading">{name}</h1>
+        <p className="bio">{shortBio}</p>
       </div>
     )
   }
 
   renderLoadingView = () => (
-    <div className='profile-loader-container' testid='loader'>
-      <Loader type='ThreeDots' color='#ffffff' height='50' width='50' />
+    <div className="profile-loader-container" data-testid="loader">
+      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
     </div>
   )
 
   renderFailureView = () => (
-    <div className='failure-view-container'>
+    <div className="failure-view-container">
       <button
-        type='button'
-        testid='button'
-        className='job-item-failure-button'
+        type="button"
+        data-testid="button"
+        className="job-item-failure-button"
         onClick={this.getProfileDetails}
       >
         Retry

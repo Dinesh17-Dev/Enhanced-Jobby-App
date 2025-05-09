@@ -44,6 +44,29 @@ const salaryRangesList = [
   },
 ]
 
+const locationList = [
+  {
+    locationName: 'Hyderabad',
+    locationId: 'HYDERABAD',
+  },
+  {
+    locationName: 'Bangalore',
+    locationId: 'BANGALORE',
+  },
+  {
+    locationName: 'Chennai',
+    locationId: 'CHENNAI',
+  },
+  {
+    locationName: 'Delhi',
+    locationId: 'DELHI',
+  },
+  {
+    locationName: 'Mumbai',
+    locationId: 'MUMBAI',
+  },
+]
+
 const apiStatusConstants = {
   initial: 'INITIAL',
   inProgress: 'INPROGRESS',
@@ -58,6 +81,7 @@ class JobProfileSection extends Component {
     employmentType: [],
     salaryRange: 0,
     apiStatus: apiStatusConstants.initial,
+    locationState: [],
   }
 
   componentDidMount() {
@@ -70,8 +94,8 @@ class JobProfileSection extends Component {
     })
 
     const jwtToken = Cookies.get('jwt_token')
-    const {salaryRange, employmentType, searchInput} = this.state
-    const url = `https://apis.ccbp.in/jobs?employment_type=${employmentType.join()}&minimum_package=${salaryRange}&search=${searchInput}`
+    const {salaryRange, employmentType, searchInput, locationState} = this.state
+    const url = `https://apis.ccbp.in/jobs?employment_type=${employmentType.join()}&minimum_package=${salaryRange}&search=${searchInput}&location=${locationState.join()}`
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -124,6 +148,17 @@ class JobProfileSection extends Component {
     )
   }
 
+  changeLocation = locationType => {
+    this.setState(prevState => {
+      const {locationState} = prevState
+      const isSelected = locationState.includes(locationType)
+      const updatedList = isSelected
+        ? locationState.filter(id => id !== locationType)
+        : [...locationState, locationType]
+      return {locationState: updatedList}
+    }, this.getJobDetails)
+  }
+
   renderJobDetails = () => {
     const {jobsList, searchInput} = this.state
     const jobsDisplay = jobsList.length > 0
@@ -141,7 +176,7 @@ class JobProfileSection extends Component {
           />
           <button
             type="button"
-            testid="searchButton"
+            data-testid="searchButton"
             className="search-button"
             onClick={this.getJobDetails}
           >
@@ -167,7 +202,7 @@ class JobProfileSection extends Component {
           />
           <button
             type="button"
-            testid="searchButton"
+            data-testid="searchButton"
             className="search-button"
             onClick={this.getJobDetails}
           >
@@ -200,7 +235,7 @@ class JobProfileSection extends Component {
       </p>
       <button
         type="button"
-        testid="button"
+        data-testid="button"
         className="jobs-failure-button"
         onClick={this.getJobDetails}
       >
@@ -210,7 +245,7 @@ class JobProfileSection extends Component {
   )
 
   renderLoadingView = () => (
-    <div className="profile-loader-container" testid="loader">
+    <div className="profile-loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
     </div>
   )
@@ -243,6 +278,8 @@ class JobProfileSection extends Component {
             searchInput={searchInput}
             changeSearchInput={this.changeSearchInput}
             getJobDetails={this.getJobDetails}
+            locationList={locationList}
+            changeLocation={this.changeLocation}
           />
         </div>
         <div className="responsive-items">
